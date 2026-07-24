@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Dropdown, Label } from "@heroui/react";
+import { redirect } from "next/navigation";
 import { BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 
@@ -12,6 +13,7 @@ const DashboardUser = () => {
 
        const handleSignOut = async () => {
           await authClient.signOut();
+          redirect('/');
         };
 
     return (
