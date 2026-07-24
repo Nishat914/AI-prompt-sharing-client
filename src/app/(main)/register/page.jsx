@@ -1,7 +1,7 @@
 "use client";
 
 import { FcGoogle } from "react-icons/fc";
-import { Card, Separator } from "@heroui/react";
+import { Card, ListBox, Separator } from "@heroui/react";
 
 import {
   Button,
@@ -11,7 +11,9 @@ import {
   Input,
   Label,
   TextField,
+  Select,
 } from "@heroui/react";
+
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -36,7 +38,8 @@ const RegisterPage = () => {
       email: user.email,
       password: user.password,
       name: user.name,
-      image: user.imageURL,
+      image: user.image,
+      role: user.role,
     });
 
     if (data) {
@@ -147,7 +150,25 @@ const RegisterPage = () => {
 
             <FieldError />
           </TextField>
-
+          <Select isRequired name="role" placeholder="Select one">
+                <Label>Signup As</Label>
+                <Select.Trigger>
+                  <Select.Value />
+                  <Select.Indicator />
+                </Select.Trigger>
+                <Select.Popover>
+                  <ListBox>
+                    <ListBox.Item id="user" textValue="user">
+                      User
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                    <ListBox.Item id="creator" textValue="creator">
+                      Creator
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                  </ListBox>
+                </Select.Popover>
+              </Select>
           <div className="flex justify-center gap-2">
             <Button
               className="btn w-full bg-[#BE9878] hover:bg-[#AF8768] text-white mt-4 border-2 border-[#BE9878]"
