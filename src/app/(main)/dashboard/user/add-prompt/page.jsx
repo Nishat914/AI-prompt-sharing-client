@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { imageUploader } from "@/lib/imageUploader";
 
 const UserAddPromptPage = () => {
   useEffect(() => {
@@ -36,8 +37,12 @@ const UserAddPromptPage = () => {
 
   console.log(prompts);
 
+  const image = await imageUploader(prompts.image)
+  console.log(image)
+
   const promptData = {
     ...prompts,
+    image: image.url,
     creatorId: session.user.id,
     creatorEmail: session.user.email,
     creatorName: session.user.name,
@@ -338,13 +343,14 @@ const UserAddPromptPage = () => {
             <div className="md:col-span-2">
 
               <TextField
-                name="thumbnailURL"
+                name="image"
                 isRequired
               >
                 <Label>Thumbnail URL</Label>
 
-                <Input
-                  type="url"
+                <input
+                  type="file"
+                  name="image"
                   placeholder="https://example.com/image.png"
                 />
 
