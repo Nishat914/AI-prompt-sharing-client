@@ -15,6 +15,11 @@ const Navbar = () => {
   console.log(isPending);
 
   const pathname = usePathname();
+  
+    
+    if(pathname.includes("dashboard")) {
+      return null
+    }
 
   const navLinkClass = (path) =>
     `font-semibold pb-1 transition-all duration-300 ${
@@ -65,7 +70,7 @@ const Navbar = () => {
                 Home
               </Link>
 
-              <Link href="/all-prompts" className={navLinkClass("/all-prompts")}>
+              <Link href="/all-prompt" className={navLinkClass("/all-prompt")}>
                 All Prompts
               </Link>
 

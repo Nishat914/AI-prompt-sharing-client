@@ -30,6 +30,10 @@ const DashboardSidebar = () => {
         title: "Profile",
         href: "/dashboard/user/profile",
       },
+      {
+        title: "Home",
+        href: "/",
+      },
     ],
 
     creator: [
@@ -44,6 +48,10 @@ const DashboardSidebar = () => {
       {
         title: "My Prompts",
         href: "/dashboard/creator/my-prompts",
+      },
+      {
+        title: "Home",
+        href: "/",
       },
     ],
 
@@ -71,6 +79,10 @@ const DashboardSidebar = () => {
       {
         title: "Analytics",
         href: "/dashboard/admin/analytics",
+      },
+      {
+        title: "Home",
+        href: "/",
       },
     ],
   };
