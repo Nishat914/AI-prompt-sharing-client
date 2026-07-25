@@ -40,6 +40,7 @@ const RegisterPage = () => {
       name: user.name,
       image: user.image,
       role: user.role,
+      createdAt: new Date(),
     });
 
     if (data) {
