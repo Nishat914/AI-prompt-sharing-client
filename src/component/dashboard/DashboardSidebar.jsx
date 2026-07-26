@@ -27,6 +27,10 @@ const DashboardSidebar = () => {
         href: "/dashboard/user/saved-prompts",
       },
       {
+        title: "My Reviews",
+        href: "/dashboard/user/my-reviews",
+      },
+      {
         title: "Profile",
         href: "/dashboard/user/profile",
       },
