@@ -1,5 +1,6 @@
 
 import PromptActions from "@/component/PromptActions";
+import ReviewList from "@/component/ReviewList";
 import { auth } from "@/lib/auth";
 import { Button, Card, Chip } from "@heroui/react";
 import { headers } from "next/headers";
@@ -26,16 +27,23 @@ const PromptDetailsPage = async ({ params }) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/prompts/${id}` );
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/prompts/${id}` );
 
-  const prompt = await res.json();
-  console.log(session.user.plan)
-  console.log(prompt.visibility)
-  const isPremiumLocked =
-  prompt.visibility === "Private" &&
-  session?.user?.plan === "free" ;
-    console.log(isPremiumLocked)
+      const prompt = await res.json();
+      console.log(session.user.plan)
+      console.log(prompt.visibility)
+      const isPremiumLocked =
+      prompt.visibility === "Private" &&
+      session?.user?.plan === "free" ;
+        console.log(isPremiumLocked)
+
+    const reviewRes = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/reviews/${id}`
+    );
+
+    const reviews = await reviewRes.json();
+    
   return (
     <div className="min-h-screen px-4 py-10">
       <div className="max-w-6xl mx-auto space-y-8">
@@ -296,21 +304,7 @@ const PromptDetailsPage = async ({ params }) => {
 
         <Card className="bg-linear-to-r from-[#f4ebe3]  to-[#e6c3b1]">
 
-          <div className="p-8">
-
-            <h2 className="text-3xl font-bold text-[#3D2C24] mb-6">
-              Reviews & Ratings
-            </h2>
-
-            <Card className="p-6">
-
-              <p className="text-gray-500 text-center">
-                No reviews yet.
-              </p>
-
-            </Card>
-
-          </div>
+          <ReviewList reviews={reviews} />
 
         </Card>
 
