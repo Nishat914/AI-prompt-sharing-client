@@ -6,6 +6,7 @@ import { BsBookmarksFill } from "react-icons/bs";
 import { FaCopy } from "react-icons/fa";
 import { MdOutlineReviews, MdReport } from "react-icons/md";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function PromptActions({
   prompt,
@@ -13,6 +14,9 @@ export default function PromptActions({
   isPremiumLocked,
 }) {
   const [bookmarked, setBookmarked] = useState(false);
+  
+
+    const router = useRouter();
 
   useEffect(() => {
     if (!session?.user?.email) return;
@@ -49,6 +53,25 @@ export default function PromptActions({
     setBookmarked(data.bookmarked);
     toast.success(data.message);
   };
+  const handleCopy = async () => {
+        try {
+            // Copy to clipboard
+            await navigator.clipboard.writeText(prompt.content);
+
+            // Increase copy count
+            await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/prompts/copy/${prompt._id}`,
+            {
+                method: "PATCH",
+            }
+            );
+
+            toast.success("Prompt copied successfully!");
+        } catch (error) {
+            toast.error("Failed to copy prompt");
+        }
+        router.refresh();
+    };
 
   return (
     <div className="flex flex-wrap gap-3">
@@ -66,6 +89,7 @@ export default function PromptActions({
       <Button
         className="bg-[#3D2C24]"
         isDisabled={isPremiumLocked}
+         onPress={handleCopy}
       >
         <FaCopy /> Copy
       </Button>
