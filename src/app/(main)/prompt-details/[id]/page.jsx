@@ -1,4 +1,5 @@
 
+import PromptActions from "@/component/PromptActions";
 import { auth } from "@/lib/auth";
 import { Button, Card, Chip } from "@heroui/react";
 import { headers } from "next/headers";
@@ -157,37 +158,12 @@ const PromptDetailsPage = async ({ params }) => {
               </Card>
 
             </div>
-
-            <div className="flex flex-wrap gap-3">
-
-              <Button
-                className="bg-[#3D2C24]"
-                
-              >
-                <BsBookmarksFill/>
-              </Button>
-
-              <Button
-                className="bg-[#3D2C24]"
-                isDisabled={isPremiumLocked}
-              >
-               <FaCopy /> Copy 
-              </Button>
-
-              <Button
-                className="bg-[#3D2C24]"
-                isDisabled={isPremiumLocked}
-              >
-                <MdOutlineReviews /> Review
-              </Button>
-
-              <Button
-                className="bg-[#3D2C24]"
-              >
-               <MdReport /> Report
-              </Button>
-
-            </div>
+            {/* bookmark,copy,review,report */}
+            <PromptActions
+              prompt={prompt}
+              session={session}
+              isPremiumLocked={isPremiumLocked}
+            />
                         {/* Creator & Statistics */}
 
             <div className="grid md:grid-cols-3 gap-6">
