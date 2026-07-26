@@ -4,12 +4,13 @@ import { authClient } from "@/lib/auth-client";
 import { Card, Button, Chip } from "@heroui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 
 const SavedPromptsPage = () => {
     const { data: session } = authClient.useSession();
 
-    const [savedPrompts, setSavedPromptsPrompts] = useState([]);
+    const [savedPrompts, setSavedPrompts] = useState([]);
 
     useEffect(() => {
     if (!session?.user?.email) return;
@@ -18,8 +19,25 @@ const SavedPromptsPage = () => {
         `${process.env.NEXT_PUBLIC_SERVER_URL}/saved-prompts/${session.user.email}`
     )
         .then((res) => res.json())
-        .then((data) => setSavedPromptsPrompts(data));
+        .then((data) => setSavedPrompts(data));
     }, [session]);
+
+    const removeBookmark = async (id) => {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/bookmarks/${id}/${session.user.email}`,
+            {
+            method: "DELETE",
+            }
+        );
+
+        if (res.ok) {
+            setSavedPrompts((prev) =>
+            prev.filter((item) => item._id !== id)
+            );
+
+            toast.success("Bookmark removed");
+        }
+        };
 
   return (
     <div className="min-h-screen px-4 py-10">
@@ -92,6 +110,7 @@ const SavedPromptsPage = () => {
                     <Button
                       color="danger"
                       variant="flat"
+                      onPress={() => removeBookmark(prompt._id)}
                     >
                       <FaBookmark className="mr-2" />
                       Remove
