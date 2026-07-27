@@ -47,5 +47,5 @@ export async function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*","/prompt-details/:id"],
+  matcher: ["/dashboard/:path*","/prompt-details/:id","/pricing/:path*"],
 };

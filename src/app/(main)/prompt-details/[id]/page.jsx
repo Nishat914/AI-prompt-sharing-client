@@ -33,10 +33,20 @@ const PromptDetailsPage = async ({ params }) => {
       const prompt = await res.json();
       // console.log(session.user.plan)
       console.log(prompt.visibility)
+
+      const isOwner =
+        session?.user?.email === prompt.creatorEmail;
+
+      const isAdmin =
+        session?.user?.role === "admin";
+
       const isPremiumLocked =
-      prompt.visibility === "Private" &&
-      session?.user?.plan === "free" ;
-        console.log(isPremiumLocked)
+        prompt.visibility === "Private" &&
+        session?.user?.plan === "free" &&
+        !isOwner &&
+        !isAdmin;
+
+      console.log(isPremiumLocked,"isPremiumLocked")
 
     const reviewRes = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/reviews/${id}`
@@ -138,7 +148,7 @@ const PromptDetailsPage = async ({ params }) => {
                             
                             size="lg"
                             className="w-full sm:w-auto px-8 font-semibold bg-[#6F5B50]"
-                        ><Link href="/payment">
+                        ><Link href="/pricing">
                         Subscribe to Premium
                         </Link>
                             
