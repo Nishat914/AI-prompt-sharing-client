@@ -16,6 +16,8 @@ export default function PromptActions({
   const [bookmarked, setBookmarked] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [reason, setReason] = useState("");
+  const [description, setDescription] = useState("");
   
 
     const router = useRouter();
@@ -126,6 +128,58 @@ export default function PromptActions({
         } catch (error) {
             console.error(error);
             toast.error("Something went wrong.");
+        }
+    };
+
+    const handleReport = async (e) => {
+        e.preventDefault();
+
+        if (!reason) {
+          return toast.error(
+            "Please select a report reason."
+          );
+        }
+
+        const report = {
+        promptId: prompt._id,
+        promptTitle: prompt.title,
+
+        userName: session.user.name,
+        userEmail: session.user.email,
+
+        reason,
+        description,
+
+        status: "pending",
+        createdAt: new Date(),
+      };
+
+        try {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/reports`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(report),
+            }
+          );
+
+          const data = await res.json();
+
+          if (res.ok) {
+            toast.success("Report submitted.");
+
+            setReason("");
+            setDescription("");
+
+            router.refresh();
+          } else {
+            toast.error(data.message);
+          }
+        } catch (error) {
+          toast.error("Something went wrong.");
         }
     };
 
@@ -241,9 +295,130 @@ export default function PromptActions({
         <MdOutlineReviews /> Review
       </Button> */}
 
-      <Button className="bg-[#3D2C24]">
-        <MdReport /> Report
-      </Button>
+      <Modal>
+
+          <Button
+            className="bg-[#3D2C24]"
+            
+          >
+            <MdReport /> Report
+          </Button>
+
+          <Modal.Backdrop>
+            <Modal.Container placement="auto">
+              <Modal.Dialog className="sm:max-w-xl">
+
+                <Modal.CloseTrigger />
+
+                <Modal.Header>
+                  <Modal.Heading>
+                    Report Prompt
+                  </Modal.Heading>
+                </Modal.Header>
+
+                <Modal.Body className="p-6">
+
+                  <Surface variant="default">
+
+                    <form
+                      onSubmit={handleReport}
+                      className="p-6 space-y-5"
+                    >
+
+                      <TextField
+                        name="name"
+                        defaultValue={session?.user?.name}
+                        isReadOnly
+                      >
+                        <Label>Name</Label>
+                        <Input className="w-full bg-mauve-200 text-mauve-700" />
+                      </TextField>
+
+                      <TextField
+                        name="email"
+                        defaultValue={session?.user?.email}
+                        isReadOnly
+                      >
+                        <Label>Email</Label>
+                        <Input className="w-full bg-mauve-200 text-mauve-700" />
+                      </TextField>
+
+                      {/* Report Reason */}
+
+                      <div className="space-y-2">
+
+                        <Label>Report Reason</Label>
+
+                        <select
+                          value={reason}
+                          onChange={(e) => setReason(e.target.value)}
+                          className="w-full rounded-xl border border-default-300 bg-mauve-200 px-3 py-3 text-mauve-700 outline-none"
+                          required
+                        >
+                          <option value="">
+                            Select a reason
+                          </option>
+
+                          <option value="Inappropriate Content">
+                            Inappropriate Content
+                          </option>
+
+                          <option value="Spam">
+                            Spam
+                          </option>
+
+                          <option value="Copyright Violation">
+                            Copyright Violation
+                          </option>
+
+                          <option value="Misleading Information">
+                            Misleading Information
+                          </option>
+
+                          <option value="Other">
+                            Other
+                          </option>
+
+                        </select>
+
+                      </div>
+
+                      {/* Description */}
+
+                      <TextField name="description">
+
+                        <Label>
+                          Description (Optional)
+                        </Label>
+
+                        <TextArea
+                          value={description}
+                          onChange={(e) =>
+                            setDescription(e.target.value)
+                          }
+                          placeholder="Write additional details..."
+                        />
+
+                      </TextField>
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-[#5e4c3d]"
+                      >
+                        Submit Report
+                      </Button>
+
+                    </form>
+
+                  </Surface>
+
+                </Modal.Body>
+
+              </Modal.Dialog>
+            </Modal.Container>
+          </Modal.Backdrop>
+
+      </Modal>
     </div>
   );
 }
