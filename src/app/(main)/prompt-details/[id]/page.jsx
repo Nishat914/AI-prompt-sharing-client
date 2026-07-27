@@ -31,7 +31,7 @@ const PromptDetailsPage = async ({ params }) => {
         `${process.env.NEXT_PUBLIC_SERVER_URL}/prompts/${id}` );
 
       const prompt = await res.json();
-      console.log(session.user.plan)
+      // console.log(session.user.plan)
       console.log(prompt.visibility)
       const isPremiumLocked =
       prompt.visibility === "Private" &&

@@ -9,7 +9,7 @@ import {
   ListBox,
   Select,
   TextArea,
-  TextField,
+  TextField
 } from "@heroui/react";
 import { TypeAnimation } from "react-type-animation";
 import { useEffect } from "react";
@@ -176,7 +176,27 @@ const UserAddPromptPage = () => {
 
             </div>
 
+            <div className="md:col-span-2">
+
+              <TextField
+                name="usageInstructions"
+                isRequired
+              >
+                <Label>Usage Instructions</Label>
+
+                <TextArea
+                  placeholder="Write a short usage Instructions.."
+                  className="min-h-28"
+                />
+
+                <FieldError />
+
+              </TextField>
+
+            </div>
+
             {/* Category */}
+             
 
             <Select
               name="category"
@@ -184,7 +204,7 @@ const UserAddPromptPage = () => {
               placeholder="Select Category"
             >
 
-              <Label>Category</Label>
+              {/* <Label>Category</Label> */}
 
               <Select.Trigger>
                 <Select.Value />
@@ -195,35 +215,35 @@ const UserAddPromptPage = () => {
 
                 <ListBox>
 
-                  <ListBox.Item id="Writing">
+                  <ListBox.Item id="Writing" textValue="Writing">
                     Writing
                   </ListBox.Item>
 
-                  <ListBox.Item id="Programming">
+                  <ListBox.Item id="Programming" textValue="Programming">
                     Programming
                   </ListBox.Item>
 
-                  <ListBox.Item id="Marketing">
+                  <ListBox.Item id="Marketing" textValue="Marketing">
                     Marketing
                   </ListBox.Item>
 
-                  <ListBox.Item id="Business">
+                  <ListBox.Item id="Business" textValue="Business">
                     Business
                   </ListBox.Item>
 
-                  <ListBox.Item id="Education">
+                  <ListBox.Item id="Education" textValue="Education">
                     Education
                   </ListBox.Item>
 
-                  <ListBox.Item id="Design">
+                  <ListBox.Item id="Design" textValue="Design">
                     Design
                   </ListBox.Item>
 
-                  <ListBox.Item id="Productivity">
+                  <ListBox.Item id="Productivity" textValue="Productivity">
                     Productivity
                   </ListBox.Item>
 
-                  <ListBox.Item id="Other">
+                  <ListBox.Item id="Other" textValue="Other">
                     Other
                   </ListBox.Item>
 
@@ -232,7 +252,7 @@ const UserAddPromptPage = () => {
               </Select.Popover>
 
             </Select>
-
+           
             {/* AI Tool */}
 
             <Select
@@ -241,7 +261,7 @@ const UserAddPromptPage = () => {
               placeholder="Select AI Tool"
             >
 
-              <Label>AI Tool</Label>
+              {/* <Label>AI Tool</Label> */}
 
               <Select.Trigger>
                 <Select.Value />
@@ -309,7 +329,7 @@ const UserAddPromptPage = () => {
               defaultSelectedKey="Beginner"
             >
 
-              <Label>Difficulty Level</Label>
+              {/* <Label>Difficulty Level</Label> */}
 
               <Select.Trigger>
                 <Select.Value />
@@ -367,7 +387,7 @@ const UserAddPromptPage = () => {
               defaultSelectedKey="Public"
             >
 
-              <Label>Visibility</Label>
+              {/* <Label>Visibility</Label> */}
 
               <Select.Trigger>
                 <Select.Value />

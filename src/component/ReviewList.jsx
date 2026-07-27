@@ -37,7 +37,7 @@ const ReviewList = ({ reviews }) => {
 
                 <div className="flex gap-4">
 
-                  <Avatar
+                  <img
                     src={review.userImage}
                     name={review.userName}
                     size="lg"

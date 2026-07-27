@@ -203,7 +203,7 @@ const MyPromptPage = () => {
                                             placeholder="Select Category"
                                             >
 
-                                            <Label>Category</Label>
+                                            {/* <Label>Category</Label> */}
 
                                             <Select.Trigger>
                                                 <Select.Value />
@@ -259,7 +259,7 @@ const MyPromptPage = () => {
                                                           placeholder="Select AI Tool"
                                                         >
                                             
-                                                          <Label>AI Tool</Label>
+                                                          {/* <Label>AI Tool</Label> */}
                                             
                                                           <Select.Trigger>
                                                             <Select.Value />
