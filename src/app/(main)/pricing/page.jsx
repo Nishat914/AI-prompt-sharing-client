@@ -100,7 +100,7 @@ const PricingPage = () => {
           </div>
 
           <h1 className="text-5xl font-bold mt-6">
-            $14.00
+            $5.00
             <span className="text-lg text-default-500">
               /month
             </span>

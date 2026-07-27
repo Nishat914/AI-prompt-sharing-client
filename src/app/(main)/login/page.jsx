@@ -50,12 +50,12 @@ const LoginPage = () => {
     }
   };
 
-//   const handleGoogleSignIn = async () => {
-//     const data = await authClient.signIn.social({
-//       provider: "google",
-//     });
-//     console.log(data);
-//   };
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    console.log(data);
+  };
 
   return (
     <div className="container mx-auto w-[80%] md:w-[70%] lg:w-[60%]  bg-linear-to-r from-[#FEFCF8] via-[#FBF6F0] to-[#F5EBDF] p-6 mt-20 rounded-2xl">
@@ -165,7 +165,7 @@ const LoginPage = () => {
 
           <div>
             <Button
-            //   onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignIn}
               className="w-full bg-[#F5E8DD] hover:bg-[#ECDCCF] text-[#5C4638] rounded-sm"
             >
               <FcGoogle /> Google
