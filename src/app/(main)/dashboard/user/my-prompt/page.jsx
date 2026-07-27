@@ -4,10 +4,12 @@
 import { authClient } from "@/lib/auth-client";
 import { imageUploader } from "@/lib/imageUploader";
 import { AlertDialog, Button, FieldError, Input, Label, Modal, Surface, TextArea, TextField, TextFieldContext  , Select, ListBox, Table} from "@heroui/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiEdit } from "react-icons/bi";
 import { FaBoxTissue, FaEdit, FaTrash } from "react-icons/fa";
+import { MdOutlinePreview } from "react-icons/md";
 
 
 const MyPromptPage = () => {
@@ -105,10 +107,10 @@ const MyPromptPage = () => {
             <h2 className="text-3xl font-bold text-[#3D2C24] ">My Ideas</h2>
             <p className="font-semibold text-[#6F5B50] mt-4">A space where all my shared prompts, creativity, and inspirations come together</p>
         </div>
-        <div className="container mx-auto  mt-20">
+        <div className="container mx-auto mt-20 px-4">
             {prompts.length > 0 ? (
                 <Table variant="secondary">
-      <Table.ScrollContainer>
+      <Table.ScrollContainer className="w-full overflow-x-auto">
         <Table.Content aria-label="Team members" className="min-w-150">
           <Table.Header>
             <Table.Column isRowHeader>Name</Table.Column>
@@ -374,7 +376,19 @@ const MyPromptPage = () => {
                                     </AlertDialog.Container>
                                   </AlertDialog.Backdrop>
                                 </AlertDialog>
+
+                                <Link href={`/prompt-details/${prompt._id}`}>
+                                <Button
+                                        
+                                        className="p-2 rounded-full bg-[#ad8a6e]  hover:bg-[#ceb098] "
+                                    >
+                                        <MdOutlinePreview className="text-white"/>
+                                    </Button>
+                                
+                              </Link>
                               </div>
+                              
+                              
 
               </Table.Cell>
             </Table.Row>

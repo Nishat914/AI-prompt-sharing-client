@@ -5,6 +5,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { GiRobotHelmet } from "react-icons/gi";
 import DashboardSidebar from "@/component/dashboard/DashboardSidebar";
 import DashboardUser from "@/component/dashboard/DashboardUser";
+import Link from "next/link";
 
 export default function ClientLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -33,12 +34,15 @@ export default function ClientLayout({ children }) {
               <HiMenu className="text-2xl text-[#3D2C24]" />
             )}
           </button>
+          
           <div className="flex items-center gap-2">
-            <GiRobotHelmet className="text-2xl text-[#C86B43]" />
+             <GiRobotHelmet className="text-2xl text-[#C86B43]" />
             <span className="text-xl font-bold text-[#3D2C24]">
               AI-<span className="text-[#C86B43]">PSMP</span>
             </span>
           </div>
+           
+         
         </div>
         <DashboardUser />
       </header>

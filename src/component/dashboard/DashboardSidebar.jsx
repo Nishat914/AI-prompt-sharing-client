@@ -30,10 +30,7 @@ const DashboardSidebar = () => {
         title: "My Reviews",
         href: "/dashboard/user/my-reviews",
       },
-      {
-        title: "Profile",
-        href: "/dashboard/user/profile",
-      },
+      
       {
         title: "Home",
         href: "/",
