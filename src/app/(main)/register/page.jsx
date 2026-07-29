@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import { imageUploader } from "@/lib/imageUploader";
 
 const RegisterPage = () => {
   useEffect(() => {
@@ -33,12 +34,14 @@ const RegisterPage = () => {
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
     console.log(user);
+    const image = await imageUploader(user.image)
+      console.log(image)
 
     const { data, error } = await authClient.signUp.email({
       email: user.email,
       password: user.password,
       name: user.name,
-      image: user.image,
+      image: image.url,
       role: user.role,
       createdAt: new Date(),
     });
@@ -86,10 +89,12 @@ const RegisterPage = () => {
             <FieldError />
           </TextField>
 
-          <TextField name="image" type="url">
+          <TextField name="image" >
             <Label>Image URL</Label>
 
-            <Input
+            <input
+              type="file"
+              name="image"
               placeholder="Image url"
               className="w-full bg-[#FCF8F4]"
             />

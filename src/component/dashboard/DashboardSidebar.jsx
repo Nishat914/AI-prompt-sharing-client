@@ -15,6 +15,10 @@ const DashboardSidebar = () => {
   const navMenu = {
     user: [
       {
+        title: "Overview",
+        href: "/dashboard/user",
+      },
+      {
         title: "Add Prompt",
         href: "/dashboard/user/add-prompt",
       },
@@ -39,8 +43,12 @@ const DashboardSidebar = () => {
 
     creator: [
       {
+        title: "My Profile",
+        href: "/dashboard/creator/my-profile",
+      },
+      {
         title: "Creator Dashboard Home",
-        href: "/dashboard/creator/home",
+        href: "/dashboard/creator",
       },
       {
         title: "Add Prompt",
@@ -57,6 +65,10 @@ const DashboardSidebar = () => {
     ],
 
     admin: [
+      {
+        title: "My Profile",
+        href: "/dashboard/admin/my-profile",
+      },
       {
         title: "Overview",
         href: "/dashboard/admin",
