@@ -1,15 +1,62 @@
 "use client";
 
 import { AlertDialog, Button, FieldError, Input, Label, Modal, Surface, TextArea, TextField, TextFieldContext  , Select, ListBox, Table} from "@heroui/react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 import { FaBoxTissue, FaTrash } from "react-icons/fa";
 
 const AllUsersTable = ({ users }) => {
+    const router = useRouter();
+        const handleRoleChange = async (id, role) => {
+        try {
+            const res = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/users/role/${id}`,
+            {
+                method: "PATCH",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ role }),
+            }
+            );
+
+            const data = await res.json();
+
+            if (data.modifiedCount > 0) {
+            toast.success("Role updated successfully.");
+            router.refresh();
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed to update role.");
+        }
+        };
+        const handleDelete = async (id) => {
+        try {
+            const res = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/users/${id}`,
+            {
+                method: "DELETE",
+            }
+            );
+
+            const data = await res.json();
+
+            if (data.deletedCount > 0) {
+            toast.success("User deleted successfully.");
+            router.refresh();
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed to delete user.");
+        }
+        };
   return (
     <>
            
             <div className="container mx-auto mt-20 px-4">
-                {users.length > 0 ? (
+            {users.length > 0 ? (
                     <Table variant="secondary">
           <Table.ScrollContainer className="w-full overflow-x-auto">
             <Table.Content aria-label="Team members" className="min-w-150">
@@ -36,7 +83,19 @@ const AllUsersTable = ({ users }) => {
                     src={user.image}
                   /></Table.Cell>
                   
-                  <Table.Cell>{user.role}</Table.Cell>
+                  <Table.Cell>
+                    <select
+                        defaultValue={user.role}
+                        onChange={(e) =>
+                            handleRoleChange(user._id, e.target.value)
+                        }
+                        className="border rounded-lg px-2 py-1"
+                        >
+                        <option value="user">User</option>
+                        <option value="creator">Creator</option>
+                        <option value="admin">Admin</option>
+                        </select>
+                </Table.Cell>
                  <Table.Cell>{user.plan}</Table.Cell>
                  <Table.Cell>{user.email}</Table.Cell>
                   <Table.Cell>{user.createdAt}</Table.Cell>
@@ -75,7 +134,7 @@ const AllUsersTable = ({ users }) => {
                                               </Button>
                     
                                               <Button
-                                                // onPress={() => handleDelete(user._id)}
+                                                onPress={() => handleDelete(user._id)}
                                                 slot="close"
                                                 className="bg-[#5f5044] text-white"
                                               >
