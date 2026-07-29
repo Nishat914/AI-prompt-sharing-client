@@ -1,8 +1,8 @@
 import AllUsersTable from "@/component/admin/AllUsersTable";
 
-// export const metadata = {
-//   title: "APSM | All Users",
-// };
+export const metadata = {
+  title: "APSM | All Users",
+};
 const AdminAllUsersPage = async() => {
 
   const res = await fetch(

@@ -166,7 +166,7 @@ const AllUsersTable = ({ users }) => {
                  : (
                      <div className=" text-center py-8 bg-linear-to-t from-[#f3ece6]  to-[#f5e5d8] rounded-2xl flex justify-center items-center flex-col gap-4">
                                     <FaBoxTissue  className="text-4xl text-white" />
-                                    <p className="text-slate-200 text-lg">No Ideas yet!!</p>
+                                    <p className="text-slate-200 text-lg">No Users yet!!</p>
                                   </div>
                 )
             }
