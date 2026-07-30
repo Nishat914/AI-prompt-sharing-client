@@ -70,7 +70,7 @@ const DashboardSidebar = () => {
         href: "/dashboard/admin/my-profile",
       },
       {
-        title: "Overview",
+        title: "Analytics",
         href: "/dashboard/admin",
       },
       {
@@ -89,10 +89,7 @@ const DashboardSidebar = () => {
         title: "Reported Prompts",
         href: "/dashboard/admin/reported-prompts",
       },
-      {
-        title: "Analytics",
-        href: "/dashboard/admin/analytics",
-      },
+      
       {
         title: "Home",
         href: "/",

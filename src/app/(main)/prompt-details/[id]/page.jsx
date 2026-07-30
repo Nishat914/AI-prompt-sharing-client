@@ -32,8 +32,8 @@ const PromptDetailsPage = async ({ params }) => {
 
       const prompt = await res.json();
       // console.log(session.user.plan)
-      console.log(prompt.visibility)
-
+      
+console.log(prompt)
       const isOwner =
         session?.user?.email === prompt.creatorEmail;
 

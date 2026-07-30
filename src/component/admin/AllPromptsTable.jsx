@@ -184,7 +184,7 @@ const handleReject = async (id) => {
                                 {/* Reject */}
                                 <Button
                                 isIconOnly
-                                className="bg-red-200 hover:bg-red-300 text-white"
+                                className="bg-red-200 hover:bg-red-300 text-red-500"
                                 onPress={() => handleReject(prompt._id)}
                                 >
                                 <CiCircleRemove className="text-xl" />
@@ -209,7 +209,7 @@ const handleReject = async (id) => {
                                 {/* Reject */}
                                 <Button
                                 isIconOnly
-                                className="bg-red-200 hover:bg-red-300 text-white"
+                                className="bg-red-200 hover:bg-red-300 text-red-600"
                                 onPress={() => handleReject(prompt._id)}
                                 >
                                 <CiCircleRemove className="text-xl" />
