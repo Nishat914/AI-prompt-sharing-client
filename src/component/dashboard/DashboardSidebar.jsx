@@ -56,7 +56,7 @@ const DashboardSidebar = () => {
       },
       {
         title: "My Prompts",
-        href: "/dashboard/creator/my-prompts",
+        href: "/dashboard/creator/my-prompt",
       },
       {
         title: "Home",

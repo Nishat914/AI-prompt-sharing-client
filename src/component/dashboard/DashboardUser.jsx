@@ -44,7 +44,7 @@ const DashboardUser = () => {
                                         {user?.name}
                                       </p>
                                       <p className="text-xs leading-none text-muted">
-                                        {user?.email}
+                                        {user?.role}
                                       </p>
                                     </div>
                                   </div>

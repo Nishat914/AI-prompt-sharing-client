@@ -31,8 +31,8 @@ const data = [
                 Monitor your platform's performance with key statistics, user activity, and overall insights.
             </p>
             </div>
-            <div className="mb-20 flex justify-center items-center gap-3 flex-wrap">
-            <Card className="overflow-hidden rounded-3xl border border-[#E9DDD2] bg-[#FFFCF8] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <div className="mb-20 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <Card className="w-full overflow-hidden rounded-3xl border border-[#E9DDD2] bg-[#FFFCF8] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
 
             {/* Top Accent */}
             <div className="h-1.5 bg-[#C9873F]" />
@@ -57,7 +57,7 @@ const data = [
 
             </Card>
 
-            <Card className="overflow-hidden rounded-3xl border border-[#E9DDD2] bg-[#FFFCF8] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Card className="w-full overflow-hidden rounded-3xl border border-[#E9DDD2] bg-[#FFFCF8] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
 
             {/* Top Accent */}
             <div className="h-1.5 bg-[#C9873F]" />
@@ -81,7 +81,7 @@ const data = [
             </div>
 
             </Card>
-            <Card className="overflow-hidden rounded-3xl border border-[#E9DDD2] bg-[#FFFCF8] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Card className="w-full overflow-hidden rounded-3xl border border-[#E9DDD2] bg-[#FFFCF8] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
 
             {/* Top Accent */}
             <div className="h-1.5 bg-[#C9873F]" />
@@ -105,7 +105,7 @@ const data = [
             </div>
 
             </Card>
-            <Card className="overflow-hidden rounded-3xl border border-[#E9DDD2] bg-[#FFFCF8] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Card className="w-full overflow-hidden rounded-3xl border border-[#E9DDD2] bg-[#FFFCF8] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
 
             {/* Top Accent */}
             <div className="h-1.5 bg-[#C9873F]" />
