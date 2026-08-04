@@ -399,11 +399,11 @@ const CreatorAddPromptPage = () => {
                 <ListBox>
 
                   <ListBox.Item id="Public">
-                    Public
+                    public
                   </ListBox.Item>
 
                   <ListBox.Item id="Private">
-                    Private
+                    private
                   </ListBox.Item>
 
                 </ListBox>
