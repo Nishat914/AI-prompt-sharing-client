@@ -1,6 +1,9 @@
 
+import AITips from "@/component/AITips";
 import Banner from "@/component/Banner";
+import CustomerReviews from "@/component/CustomerReviews";
 import FeaturedPrompts from "@/component/FeaturedPrompts";
+import HowItWorks from "@/component/HowItWorks";
 import TestPage from "@/component/Test";
 import TopCreators from "@/component/TopCreators";
 import WhyChooseUs from "@/component/WhyChooseUs";
@@ -24,12 +27,25 @@ export default async function Home() {
 );
 
 const creators = await creatorRes.json();
+
+const reviewRes = await fetch(
+  `${process.env.NEXT_PUBLIC_SERVER_URL}/customer-reviews`,
+  {
+    cache: "no-store",
+  }
+);
+
+const reviews = await reviewRes.json();
+
   return (
     <>
       <Banner></Banner>
       <FeaturedPrompts prompts={prompts}></FeaturedPrompts>
       <WhyChooseUs></WhyChooseUs>
       <TopCreators creators={creators} />
+      <CustomerReviews reviews={reviews} />
+      <HowItWorks />
+      <AITips />
     </>
   );
 }
